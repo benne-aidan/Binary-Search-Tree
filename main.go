@@ -3,14 +3,14 @@ package main
 import "fmt"
 
 func main() {
-	var list BST[int32]
-	list.treeInit()
-	list.head.setVal(5)
-	list.head.setLeft(2)
+	var head TreeNode[int32]
+	head.headInit()
+	head.setVal(5)
+	head.setLeft(2)
 
-	if list.head.hasLeft() {
+	if head.hasLeft() {
 		fmt.Println("Has child")
-		fmt.Println(list.head.left.val)
+		fmt.Println(head.left.val)
 	} else {
 		fmt.Println("Childless")
 	}
