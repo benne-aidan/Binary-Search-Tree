@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 // Node in binary search tree
 type TreeNode[T comparable] struct {
 	val         T
@@ -11,10 +13,38 @@ type TreeNode[T comparable] struct {
 
 // Other methods
 
+// InOrder traversal to print tree from head. Does not add newline due to recursive nature of method
+func (head *TreeNode[T]) PrintTree() {
+	if head.isEmpty() {
+		fmt.Println("Tree is empty")
+	}
+
+	if head.hasLeft() {
+		head.left.PrintTree()
+	}
+	fmt.Print(head.val)
+	fmt.Print(" ")
+	if head.hasRight() {
+		head.right.PrintTree()
+	}
+}
+
+// Insert node into tree from head
+func (head *TreeNode[T]) Insert(newVal T) {
+	// Special case for empty tree
+	if head.isEmpty() {
+		head.setVal(newVal)
+		return
+	}
+
+}
+
 // ====================== Methods on tree nodes =============================================================
 
 // Initialize head node (empty value)
 func (node *TreeNode[T]) headInit() {
+	// We denote an empty tree (or subtree) by a node with height zero
+	// This allows us to initialize a tree as a head node with nothing in it
 	node.left = nil
 	node.right = nil
 	node.height = 0
@@ -82,14 +112,6 @@ func (node *TreeNode[T]) setRight(newVal T) {
 	node.right = newNode
 }
 
-/*
-func print() {
-	if hasLeft {
-		left.print()
-	}
-	System.out.println(val)
-	if hasRight {
-		right.print()
-	}
+func (head *TreeNode[T]) isEmpty() bool {
+	return head.height == 0
 }
-*/
