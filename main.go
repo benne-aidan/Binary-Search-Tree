@@ -1,7 +1,7 @@
 package main
 
 func main() {
-	var head TreeNode[int32]
+	var head TreeNode
 	head.headInit()
 	head.setVal(5)
 	head.setLeft(2)
