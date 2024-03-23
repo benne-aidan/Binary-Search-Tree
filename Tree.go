@@ -29,6 +29,16 @@ func (head *TreeNode[T]) PrintTree() {
 	}
 }
 
+// Insert node into tree from head
+func (head *TreeNode[T]) Insert(newVal T) {
+	// Special case for empty tree
+	if head.isEmpty() {
+		head.setVal(newVal)
+		return
+	}
+
+}
+
 // ====================== Methods on tree nodes =============================================================
 
 // Initialize head node (empty value)
@@ -105,15 +115,3 @@ func (node *TreeNode[T]) setRight(newVal T) {
 func (head *TreeNode[T]) isEmpty() bool {
 	return head.height == 0
 }
-
-/*
-func print() {
-	if hasLeft {
-		left.print()
-	}
-	System.out.println(val)
-	if hasRight {
-		right.print()
-	}
-}
-*/
