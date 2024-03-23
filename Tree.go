@@ -3,10 +3,10 @@ package main
 import "fmt"
 
 // Node in binary search tree
-type TreeNode[T comparable] struct {
-	val         T
+type TreeNode struct {
+	val         int32
 	height      uint16
-	left, right *TreeNode[T]
+	left, right *TreeNode
 }
 
 // ====================== REQUIRED METHODS FOR ASSIGNMENT ===================================================
@@ -14,7 +14,7 @@ type TreeNode[T comparable] struct {
 // Other methods
 
 // InOrder traversal to print tree from head. Does not add newline due to recursive nature of method
-func (head *TreeNode[T]) PrintTree() {
+func (head *TreeNode) PrintTree() {
 	if head.isEmpty() {
 		fmt.Println("Tree is empty")
 	}
@@ -30,7 +30,7 @@ func (head *TreeNode[T]) PrintTree() {
 }
 
 // Insert node into tree from head
-func (head *TreeNode[T]) Insert(newVal T) {
+func (head *TreeNode) Insert(newVal int32) {
 	// Special case for empty tree
 	if head.isEmpty() {
 		head.setVal(newVal)
@@ -42,7 +42,7 @@ func (head *TreeNode[T]) Insert(newVal T) {
 // ====================== Methods on tree nodes =============================================================
 
 // Initialize head node (empty value)
-func (node *TreeNode[T]) headInit() {
+func (node *TreeNode) headInit() {
 	// We denote an empty tree (or subtree) by a node with height zero
 	// This allows us to initialize a tree as a head node with nothing in it
 	node.left = nil
@@ -51,7 +51,7 @@ func (node *TreeNode[T]) headInit() {
 }
 
 // Initialize empty node
-func (node *TreeNode[T]) nodeInit(newVal T) {
+func (node *TreeNode) nodeInit(newVal int32) {
 	node.left = nil
 	node.right = nil
 	node.val = newVal
@@ -59,7 +59,7 @@ func (node *TreeNode[T]) nodeInit(newVal T) {
 }
 
 // Return true if node has left child
-func (node *TreeNode[T]) hasLeft() bool {
+func (node *TreeNode) hasLeft() bool {
 	if node.left == nil {
 		return false
 	} else {
@@ -68,7 +68,7 @@ func (node *TreeNode[T]) hasLeft() bool {
 }
 
 // Return true if node has right child
-func (node *TreeNode[T]) hasRight() bool {
+func (node *TreeNode) hasRight() bool {
 	if node.right == nil {
 		return false
 	} else {
@@ -77,41 +77,41 @@ func (node *TreeNode[T]) hasRight() bool {
 }
 
 // Return pointer to left child of node
-func (node *TreeNode[T]) getLeft() *TreeNode[T] {
+func (node *TreeNode) getLeft() *TreeNode {
 	return node.left
 }
 
 // Return pointer to right child of node
-func (node *TreeNode[T]) getRight() *TreeNode[T] {
+func (node *TreeNode) getRight() *TreeNode {
 	return node.right
 }
 
 // Return true if node is external
-func (node *TreeNode[T]) isExternal() bool {
+func (node *TreeNode) isExternal() bool {
 	return !(node.hasLeft() || node.hasRight())
 }
 
 // Update value stored in node
-func (node *TreeNode[T]) setVal(newVal T) {
+func (node *TreeNode) setVal(newVal int32) {
 	node.val = newVal
 }
 
 // Set left node to a particular value
-func (node *TreeNode[T]) setLeft(newVal T) {
-	newNode := &TreeNode[T]{}
+func (node *TreeNode) setLeft(newVal int32) {
+	newNode := &TreeNode{}
 	newNode.nodeInit(newVal)
 
 	node.left = newNode
 }
 
 // Set right node to a particular value
-func (node *TreeNode[T]) setRight(newVal T) {
-	newNode := &TreeNode[T]{}
+func (node *TreeNode) setRight(newVal int32) {
+	newNode := &TreeNode{}
 	newNode.nodeInit(newVal)
 
 	node.right = newNode
 }
 
-func (head *TreeNode[T]) isEmpty() bool {
+func (head *TreeNode) isEmpty() bool {
 	return head.height == 0
 }
