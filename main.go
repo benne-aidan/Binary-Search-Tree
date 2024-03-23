@@ -1,16 +1,20 @@
 package main
 
+import "fmt"
+
 func main() {
 	var head TreeNode
 	head.headInit()
-	head.setVal(5)
-	head.setLeft(2)
-
-	head.setRight(7)
-	head.right.setLeft(6)
-	head.left.setRight(3)
+	head.Insert(5)
+	head.Insert(3)
+	head.Insert(7)
+	head.Insert(2)
+	head.Insert(4)
+	head.Insert(6)
+	head.Insert(8)
 
 	head.PrintTree()
+	fmt.Println()
 
 	//if head.hasLeft() {
 	//	fmt.Println("Has child")

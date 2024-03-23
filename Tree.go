@@ -33,10 +33,29 @@ func (head *TreeNode) PrintTree() {
 func (head *TreeNode) Insert(newVal int32) {
 	// Special case for empty tree
 	if head.isEmpty() {
+		head.height++ // Update node height
 		head.setVal(newVal)
 		return
 	}
 
+	head.height++ // Update node height
+
+	// Should be inserted left
+	if newVal <= head.val {
+		// If there is already a left branch
+		if head.hasLeft() {
+			head.left.Insert(newVal)
+		} else { // If there is no left branch (correct insertion location found)
+			head.setLeft(newVal)
+		}
+	} else { // Should be inserted right
+		// If there is already a right branch
+		if head.hasRight() {
+			head.right.Insert(newVal)
+		} else { // If there is no right branch (correct insertion location found)
+			head.setRight(newVal)
+		}
+	}
 }
 
 // ====================== Methods on tree nodes =============================================================
