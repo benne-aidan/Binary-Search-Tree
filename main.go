@@ -16,6 +16,9 @@ func main() {
 	head.PrintTree()
 	fmt.Println()
 
+	fmt.Println(head.Search(4))
+	fmt.Println(head.Search(1))
+
 	//if head.hasLeft() {
 	//	fmt.Println("Has child")
 	//	fmt.Println(head.left.val)

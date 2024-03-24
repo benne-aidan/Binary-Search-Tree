@@ -58,6 +58,39 @@ func (head *TreeNode) Insert(newVal int32) {
 	}
 }
 
+// Searches for value in tree. Returns said value if successful, returns last leaf found otherwise
+func (head *TreeNode) Search(target int32) int32 {
+	// Throw error if tree is empty
+	if head.isEmpty() {
+		panic("ERROR: Cannot search empty tree")
+	}
+
+	// Base case: node is external (target not found)
+	if head.isExternal() {
+		return head.val
+	}
+
+	// If target is less than node
+	if target < head.val {
+		// If no value less than node is present in tree
+		if !head.hasLeft() {
+			return head.val
+		}
+		// Otherwise, recurse and search left subtree
+		return head.left.Search(target)
+
+	} else if target > head.val { // Target is greater than node
+		// If no value greater than node is present in tree
+		if !head.hasRight() {
+			return head.val
+		}
+		// Otherwise, recurse and search right subtree
+		return head.right.Search(target)
+	} else { // Base case: node is found
+		return head.val
+	}
+}
+
 // ====================== Methods on tree nodes =============================================================
 
 // Initialize head node (empty value)
@@ -95,16 +128,6 @@ func (node *TreeNode) hasRight() bool {
 	}
 }
 
-// Return pointer to left child of node
-func (node *TreeNode) getLeft() *TreeNode {
-	return node.left
-}
-
-// Return pointer to right child of node
-func (node *TreeNode) getRight() *TreeNode {
-	return node.right
-}
-
 // Return true if node is external
 func (node *TreeNode) isExternal() bool {
 	return !(node.hasLeft() || node.hasRight())
@@ -131,6 +154,7 @@ func (node *TreeNode) setRight(newVal int32) {
 	node.right = newNode
 }
 
+// Returns true if tree is empty, false otherwise
 func (head *TreeNode) isEmpty() bool {
 	return head.height == 0
 }
