@@ -135,12 +135,10 @@ func (head *TreeNode) Remove(target int32) {
 		} else {
 			// In this case the target node is the parent node, which only
 			// happens in the case of removing the root node.
-
 			targetNode.val = successor.val
 			targetNode.left = successor.left
 			targetNode.right = successor.right
 			successor.init = 0
-
 		}
 	}
 

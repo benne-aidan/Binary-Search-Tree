@@ -5,25 +5,11 @@ import (
 	"math/rand/v2"
 )
 
-func main() {
+func debug() {
 	var head TreeNode
 	head.headInit()
 
-	// Works when root has no children
-	// Does it happen with 1 child? Yes
-
-	//	head.Insert(5)
-	//	head.Insert(4)
-	//	head.Insert(3)
-	//	fmt.Print("List: ")
-	//	head.PrintTree()
-	//	fmt.Println()
-	//	head.Remove(5)
-	//	fmt.Print("Removed 5. New list: ")
-	//	head.PrintTree()
-	//	fmt.Println()
-
-	// General test case to test tree as whole. Uncomment when you think you have working code
+	// General test case to test tree as whole. Uncomment to test random insertions and deletions
 	for range 10 {
 		num := rand.Int32N(50)
 		fmt.Println("Inserting ", num)
@@ -46,5 +32,10 @@ func main() {
 		}
 
 	}
+}
+
+func main() {
+	debug()
+	// TODO: Define function for test cases listed in assignment, measure runtime
 
 }
