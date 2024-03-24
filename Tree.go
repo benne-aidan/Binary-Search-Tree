@@ -60,35 +60,7 @@ func (head *TreeNode) Insert(newVal int32) {
 
 // Searches for value in tree. Returns said value if successful, returns last leaf found otherwise
 func (head *TreeNode) Search(target int32) int32 {
-	// Throw error if tree is empty
-	if head.isEmpty() {
-		panic("ERROR: Cannot search empty tree")
-	}
-
-	// Base case: node is external (target not found)
-	if head.isExternal() {
-		return head.val
-	}
-
-	// If target is less than node
-	if target < head.val {
-		// If no value less than node is present in tree
-		if !head.hasLeft() {
-			return head.val
-		}
-		// Otherwise, recurse and search left subtree
-		return head.left.Search(target)
-
-	} else if target > head.val { // Target is greater than node
-		// If no value greater than node is present in tree
-		if !head.hasRight() {
-			return head.val
-		}
-		// Otherwise, recurse and search right subtree
-		return head.right.Search(target)
-	} else { // Base case: node is found
-		return head.val
-	}
+	return head.findNode(target).val
 }
 
 // ====================== Methods on tree nodes =============================================================
@@ -157,4 +129,37 @@ func (node *TreeNode) setRight(newVal int32) {
 // Returns true if tree is empty, false otherwise
 func (head *TreeNode) isEmpty() bool {
 	return head.height == 0
+}
+
+// Searches for node in tree containing targetVal. Returns node if successful, returns last node found otherwise
+func (head *TreeNode) findNode(targetVal int32) *TreeNode {
+	// Throw error if tree is empty
+	if head.isEmpty() {
+		panic("ERROR: Cannot search empty tree")
+	}
+
+	// Base case: node is external (target not found)
+	if head.isExternal() {
+		return head
+	}
+
+	// If target is less than node
+	if targetVal < head.val {
+		// If no value less than node is present in tree
+		if !head.hasLeft() {
+			return head
+		}
+		// Otherwise, recurse and search left subtree
+		return head.left.findNode(targetVal)
+
+	} else if targetVal > head.val { // Target is greater than node
+		// If no value greater than node is present in tree
+		if !head.hasRight() {
+			return head
+		}
+		// Otherwise, recurse and search right subtree
+		return head.right.findNode(targetVal)
+	} else { // Base case: node is found
+		return head
+	}
 }
