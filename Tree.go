@@ -114,7 +114,10 @@ func (head *TreeNode) Remove(target int32) {
 		}
 
 	} else { // Case: 1 child
+		// Get parent node to help with deletion
 		parentNode := targetNode.parent(head)
+
+		// Determine successor node (either right or left)
 		var successor *TreeNode
 		if targetNode.hasLeft() {
 			successor = targetNode.left
@@ -125,11 +128,20 @@ func (head *TreeNode) Remove(target int32) {
 		// Determine whether targetNode is left or right child to update parentNode reference
 		if targetNode.val < parentNode.val {
 			parentNode.left = successor
-		} else {
+			targetNode.init = 0
+		} else if targetNode.val > parentNode.val {
 			parentNode.right = successor
-		}
+			targetNode.init = 0
+		} else {
+			// In this case the target node is the parent node, which only
+			// happens in the case of removing the root node.
 
-		targetNode.init = 0
+			targetNode.val = successor.val
+			targetNode.left = successor.left
+			targetNode.right = successor.right
+			successor.init = 0
+
+		}
 	}
 
 }
