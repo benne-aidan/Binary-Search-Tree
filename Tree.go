@@ -29,7 +29,7 @@ func (head *TreeNode) PrintTree() {
 	}
 }
 
-// Insert node into tree from head
+// Insert node into tree from head. Ignores duplicate elements
 func (head *TreeNode) Insert(newVal int32) {
 	// Special case for empty tree
 	if head.isEmpty() {
@@ -40,21 +40,14 @@ func (head *TreeNode) Insert(newVal int32) {
 
 	head.height++ // Update node height
 
-	// Should be inserted left
-	if newVal <= head.val {
-		// If there is already a left branch
-		if head.hasLeft() {
-			head.left.Insert(newVal)
-		} else { // If there is no left branch (correct insertion location found)
-			head.setLeft(newVal)
-		}
-	} else { // Should be inserted right
-		// If there is already a right branch
-		if head.hasRight() {
-			head.right.Insert(newVal)
-		} else { // If there is no right branch (correct insertion location found)
-			head.setRight(newVal)
-		}
+	// Find node to append to
+	targetNode := head.findNode(newVal)
+
+	// Determine whether to append left or right, and do so
+	if newVal < targetNode.val {
+		targetNode.setLeft(newVal)
+	} else if newVal > targetNode.val {
+		targetNode.setRight(newVal)
 	}
 }
 
