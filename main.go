@@ -1,28 +1,31 @@
 package main
 
-import "fmt"
-
 func main() {
 	var head TreeNode
 	head.headInit()
-	head.Insert(5)
-	head.Insert(3)
-	head.Insert(7)
-	head.Insert(2)
-	head.Insert(4)
-	head.Insert(6)
-	head.Insert(8)
 
-	head.PrintTree()
-	fmt.Println()
+	// General test case to test tree as whole. Uncomment when you think you have working code
+	//	for range 10 {
+	//		num := rand.Int32N(50)
+	//		fmt.Println("Inserting ", num)
+	//		head.Insert(num)
+	//	}
+	//
+	//	head.PrintTree()
+	//	fmt.Println()
+	//
+	//	for i := range 50 {
+	//		if head.isEmpty() {
+	//			break
+	//		}
+	//
+	//		if head.contains(int32(i)) {
+	//			head.Remove(int32(i))
+	//			fmt.Printf("Removed %d from tree\nNew tree: ", i)
+	//			head.PrintTree()
+	//			fmt.Println()
+	//		}
+	//
+	//	}
 
-	fmt.Println(head.Search(4))
-	fmt.Println(head.Search(1))
-
-	//if head.hasLeft() {
-	//	fmt.Println("Has child")
-	//	fmt.Println(head.left.val)
-	//} else {
-	//	fmt.Println("Childless")
-	//}
 }
