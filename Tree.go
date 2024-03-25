@@ -321,6 +321,7 @@ func (head *TreeNode) contains(target int32) bool {
 	return head.Search(target) == target
 }
 
+// Completely deletes a tree and all of its nodes
 func (head *TreeNode) deleteTree() {
 	if head.hasLeft() {
 		head.left.deleteTree()
