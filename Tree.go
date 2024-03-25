@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // Node in binary search tree
 type TreeNode struct {
@@ -47,6 +49,14 @@ func (head *TreeNode) Insert(newVal int32) {
 		targetNode.setLeft(newVal)
 	} else if newVal > targetNode.val {
 		targetNode.setRight(newVal)
+	} else { // If not left or right, element is duplicate insert randomly to left or right
+		if targetNode.isExternal() {
+			targetNode.setLeft(newVal)
+		} else if targetNode.hasRight() {
+			targetNode.right.Insert(newVal)
+		} else if targetNode.hasLeft() {
+			targetNode.left.Insert(newVal)
+		}
 	}
 }
 
