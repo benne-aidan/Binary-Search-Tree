@@ -321,6 +321,18 @@ func (head *TreeNode) contains(target int32) bool {
 	return head.Search(target) == target
 }
 
+func (head *TreeNode) deleteTree() {
+	if head.hasLeft() {
+		head.left.deleteTree()
+	}
+	if head.hasRight() {
+		head.right.deleteTree()
+	}
+	head.left = nil
+	head.right = nil
+	head.init = 0
+}
+
 // ====================== Other functions relating to trees =================================================
 
 // Swap the values of two nodes
